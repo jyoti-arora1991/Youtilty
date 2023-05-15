@@ -8,7 +8,9 @@ import { useNavigate } from 'react-router-dom';
 const clientId = '890593488111-o10mtf4ka43e97vdnntv1cev714ipo64.apps.googleusercontent.com';
 
 function GoogleLoginButton(props) {
+  console.log("props")
 
+  console.log(props)
   useEffect(() => {
     function start() {
       gapi.client.init({
@@ -51,7 +53,7 @@ function GoogleLoginButton(props) {
       onFailure={onFailure}
       scope={'https://www.googleapis.com/auth/youtube.readonly'}
       render={({ onClick, disabled }) => (
-          <Button variant="contained" style={{ backgroundColor: '#FF686B', color: '#FFFFFF' }} onClick={onClick} disabled={disabled} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Button variant="contained" style={{ backgroundColor: '#47387As', color: '#FFFFFF' }} onClick={onClick} disabled={disabled} sx={{ display: 'flex', justifyContent: 'center', width:'70%', margin:'50px', marginTop:'10px' }}>
             Get started
           </Button>
       )}

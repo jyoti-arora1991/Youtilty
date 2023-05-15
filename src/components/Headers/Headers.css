@@ -1,0 +1,15 @@
+.header {
+    background-color: rgb(108, 91, 113);
+    display: flex-inline    ;
+    
+  
+    
+  }
+  
+  .header-logo {
+    font-family: "Raleway";
+    color: #ff6885;
+    margin-left: 1rem;
+  }
+ 
+  

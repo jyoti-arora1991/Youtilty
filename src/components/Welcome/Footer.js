@@ -1,5 +1,5 @@
 import React from "react"
-import { ListItem, List, ListItemText, ThemeProvider, Box,Typography,Card,CardContent, createTheme, Grid } from '@mui/material';
+import { ListItem, List, ListItemText, ThemeProvider,Button, Box,Typography,Card,CardContent, createTheme, Grid } from '@mui/material';
 import GoogleLoginButton from "../GoogleLoginButton";
 
 
@@ -9,7 +9,8 @@ import GoogleLoginButton from "../GoogleLoginButton";
 function Footer(props) {
     return (
       
-        <>        
+        <>  
+       
         <GoogleLoginButton {...props}/>
         {/* <Box mt ={5} style={{ backgroundColor: '#f3ebff', display: 'flex', justifyContent: 'center', alignItems: 'center', paddingLeft: '20px', paddingRight: '50px', height: {xs:'5px',lg:'100px'} }}> */}
 

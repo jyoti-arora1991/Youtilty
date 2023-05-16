@@ -1,23 +1,23 @@
-import React from "react"
-import { ListItem, List, ListItemText,Box,ThemeProvider, ListItemIcon,  Typography, createTheme, Grid } from '@mui/material';
+import React, {useState} from "react"
+import { ListItem, List,Button, ListItemText,Box,ThemeProvider, ListItemIcon,  Typography, createTheme, Grid } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import ArrowCircleRightSharpIcon from '@mui/icons-material/ArrowCircleRightSharp';
-import GppGoodIcon from '@mui/icons-material/GppGood';
+import InsightsIcon from '@mui/icons-material/Insights';
+import ContactSupportIcon from '@mui/icons-material/ContactSupport';
+import BatteryChargingFullIcon from '@mui/icons-material/BatteryChargingFull';
+import GoogleLoginButton from "../GoogleLoginButton";
 
 
 
-function AboutApp() {
+
+function AboutApp(props) {
     const theme = useTheme();
-
-
-// # {
-//     xs: 'column',
-//     [theme.breakpoints.up('sm')]: 'row',
-//     [theme.breakpoints.up('md')]: 'row',
-//     [theme.breakpoints.up('lg')]: 'row',
-
+    const [isTextVisible, setIsTextVisible] = useState(true);
+    const handleClick = () => {
+      setIsTextVisible(false);
+    };
     return (
-        <Box sx={{display:'flex',flexDirection: {xs:'column', lg:'row'}}}>
+        <Box sx={{display:'flex',height:'100%',flexDirection: {xs:'column', lg:'row', backgroundColor: '#d4d4d4'}}}>
         <Box sx={{
             mt:{xs:'40px', lg:'50px'},
             maxWidth: {
@@ -31,38 +31,61 @@ function AboutApp() {
             textAlign: 'left',
             margin:'30px'
           }}>
-          <Typography variant="h4" sx={{ fontWeight:'strong',fontWeight:400, fontFamily: 'ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji' }}>
-            Simplfy YouTube Analytics With Our Interactive Tool. 
+           {isTextVisible && <Typography variant="h4" sx={{ fontWeight:'strong',fontWeight:400, fontFamily: 'ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji' }}>
+            Unleash Your YouTube Potentioal with Real-time Analytics Chat! 
             <Box bgcolor="#f2f2f2">
             <List sx={{ marginTop: '50px' }}>
             <ListItem>
             <ListItemIcon>
-            <GppGoodIcon sx={{ color: 'green' }}/>
+            <InsightsIcon sx={{ color: 'green' }}/>
         </ListItemIcon>
-              <ListItemText primary={<Typography marginLeft={0}  sx={{ color: '#000',fontFamily: 'Big Caslon', fontSize: {xs:'16px', sm:'20px',lg:'20px'} }}>
-                Why isn't your channel popular ?
+              <ListItemText primary={<Typography marginLeft={0}  sx={{ fontWeight:'bold', color: '#000',fontFamily: 'ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji', fontSize: {xs:'20px', sm:'20px',lg:'20px'} }}>
+                Gain instant insights
               </Typography>} />
             </ListItem>
             <ListItem>
             <ListItemIcon>
-            <GppGoodIcon sx={{ color: 'green' }}/>
+            <ContactSupportIcon sx={{ color: 'green' }}/>
         </ListItemIcon>
-              <ListItemText primary={<Typography  marginLeft={0} sx={{ color: '#000',fontFamily: 'Big Caslon', fontSize: {xs:'16px', sm:'20px',lg:'20px'}  }}>
-                Why are some videos not getting views ?
+              <ListItemText primary={<Typography  marginLeft={0} sx={{ fontWeight:'bold',color: '#000',fontFamily: 'ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji', fontSize: {xs:'20px', sm:'20px',lg:'20px'}  }}>
+                Ask Questions
               </Typography>} />
             </ListItem>
             <ListItem>
             <ListItemIcon>
-            <GppGoodIcon sx={{ color: 'green' }}/>
+            <BatteryChargingFullIcon sx={{ color: 'green' }}/>
         </ListItemIcon>
-              <ListItemText primary={<Typography sx={{ color: '#000',fontFamily: 'Big Caslon', fontSize: {xs:'16px', sm:'20px',lg:'20px'}  }}>
-                What strategies can you use to get more views and a lot more ?
+              <ListItemText primary={<Typography sx={{fontWeight:'bold', color: '#000',fontFamily: 'ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji', fontSize: {xs:'20px', sm:'20px',lg:'20px'}  }}>
+                Supercharge your channel's Performance
               </Typography>} />
             </ListItem>
           </List>
           </Box>
+          </Typography>}
+          {/* <Box sx={{backgroundColor:'#d4d4d4'}}>  */}
+          {!isTextVisible && (  <>
+          <Typography variant="h4" sx={{ mt:'200px',fontWeight: 'bold', fontFamily: 'ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji' }}>
+            Ready to take your channel to the next level?
           </Typography>
+          
+          <Typography variant="h4" sx={{ mt:'20px',fontWeight: 'bold', fontFamily: 'ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji' }}>
+            To make this happen, we need your permission to access your Google account.
+          </Typography>
+        </>
+            )}
+            {/* </Box> */}
         </Box>
+        {isTextVisible && <Button variant="contained"  onClick={handleClick} sx={{borderRadius: '10px',padding:'10px','&:hover': {
+      backgroundColor: '#000', // Darker shade on hover
+    },
+    color: '#FFFFFF',
+    borderRadius: '4px',
+    padding: '10px 20px',
+    fontSize: '16px',
+    fontWeight: 'bold'}}>
+  Let's Go
+</Button>}
+{!isTextVisible && <GoogleLoginButton {...props}/>}
         {/* <Box mt={1} sx={{ display: 'block' }}> */}
           {/* <img src={img} alt="your-image" sx={{ width:'10px', height: '10px' }} /> */}
           {/* <img src={img} alt="your-image" /> */}

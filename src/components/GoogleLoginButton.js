@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import httpRequest from '../services/api';
 import { gapi } from 'gapi-script';
 import { useNavigate } from 'react-router-dom';
+import GoogleIcon from '@mui/icons-material/Google';
 
 const clientId = '890593488111-o10mtf4ka43e97vdnntv1cev714ipo64.apps.googleusercontent.com';
 
@@ -47,17 +48,38 @@ function GoogleLoginButton(props) {
   return (
 
     <GoogleLogin
-      clientId={clientId}
-      buttonText="Get Started"
-      onSuccess={onSuccess}
-      onFailure={onFailure}
-      scope={'https://www.googleapis.com/auth/youtube.readonly'}
-      render={({ onClick, disabled }) => (
-          <Button variant="contained" style={{ backgroundColor: '#47387As', color: '#FFFFFF' }} onClick={onClick} disabled={disabled} sx={{ display: 'flex', justifyContent: 'center', width:'70%', margin:'50px', marginTop:'10px' }}>
-            Get started
-          </Button>
-      )}
-    />
+    clientId={clientId}
+    buttonText="Get Started"
+    onSuccess={onSuccess}
+    onFailure={onFailure}
+    scope={'https://www.googleapis.com/auth/youtube.readonly'}
+    render={({ onClick, disabled }) => (
+      <Button
+        variant="contained"
+        sx={{
+          
+          backgroundColor: '#000',
+          color: '#FFFFFF',
+          display: 'flex',
+          justifyContent: 'center',
+          margin: '10px',
+          marginTop: '10px',
+        }}
+        onClick={onClick}
+        disabled={disabled}
+        startIcon={<GoogleIcon style={{ color: '#4285F4' }}/>}
+      >
+        Sign in with your Google account
+      </Button>
+    )}
+  />
+
+  
+  
+  
+  
+  
+  
   );
 }
 

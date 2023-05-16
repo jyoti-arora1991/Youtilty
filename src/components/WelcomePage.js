@@ -34,8 +34,8 @@ function WelcomePage(props) {
     <Layout>
     
     <Headers  {...props}/> 
-    <AboutApp/>
-<Footer  {...props}/>
+    <AboutApp {...props}/>
+{/* <Footer  {...props}/> */}
 
 </Layout>
 

@@ -6,9 +6,10 @@ function Layout({ children }) {
     <Box sx={{
         
         display: "flex",
-        height:'auto',
+        height:'1000px',
         width:'auto',
         flexDirection:'column',
+        backgroundColor:'#d4d4d4',
         // paddingLeft: { xs: "10px", sm: "32px", md: "64px" },
         // paddingRight: { xs: "10px", sm: "32px", md: "64px" },
         overflow: "hidden"

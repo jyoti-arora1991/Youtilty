@@ -4,7 +4,7 @@ import WelcomePage from './components/WelcomePage';
 import Welcome1 from './components/welcome1.js';
 import GoogleLoginButton from './components/GoogleLoginButton';
 import ChannelListDropdown from './components/ChannelListDropdown';
-import img from './img/img3.jpeg';
+import img from './img/images12.jpeg';
 import { Box } from '@mui/material';
 import ChatWindow from "./components/ChatWindow";
 import Test from "./components/Test";
@@ -82,7 +82,12 @@ const App = () => {
   }
 
   return (
-    <div >
+    <div  style={{
+      backgroundImage: `url(${img})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      minHeight: '100vh',
+    }}>
       <Routes>
         <Route path="/" element={
           // <Welcome1 onSuccess={handleSuccess} onChannelList={handleChannelList} />

@@ -57,19 +57,19 @@ function GoogleLoginButton(props) {
       <Button
         variant="contained"
         sx={{
-          
-          backgroundColor: '#000',
-          color: '#FFFFFF',
+          width:'300px',
+          backgroundColor: '#fff',
+          color: '#000',
           display: 'flex',
           justifyContent: 'center',
-          margin: '10px',
+          margin: '40px',
           marginTop: '10px',
         }}
         onClick={onClick}
         disabled={disabled}
         startIcon={<GoogleIcon style={{ color: '#4285F4' }}/>}
       >
-        Sign in with your Google account
+        Sign in with your Google 
       </Button>
     )}
   />

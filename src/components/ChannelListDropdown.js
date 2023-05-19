@@ -24,6 +24,7 @@ import ChatWindow from './ChatWindow';
 import GppGoodIcon from '@mui/icons-material/GppGood';
 import SecurityUpdateGoodIcon from '@mui/icons-material/SecurityUpdateGood';
 
+
 import { styled } from '@mui/material/styles';
 
 const GradientCard = styled(Card)(({ theme }) => ({
@@ -231,9 +232,9 @@ function ChannelListDropdown(props) {
     };
     
   return (
-    <>
-     {/* <Header/> */}
-      <Divider sx={{ borderWidth: '10px',  borderStyle: 'solid', margin:'3px' }}/> 
+    
+      <Box sx={{backgroundColor: '#fff'}}>
+      <Box >
       <Typography variant="h4" sx={{ color:'#736689',mb:'40px',mt:'10px',ml:'20px',mr:'20px',textAlign:'center', fontWeight:'bold', fontFamily: 'ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji' }}> 
       Gain insights into your YouTube channel.
             </Typography> 
@@ -661,8 +662,8 @@ Select Channels
           </Box>
         </div>
       </div> */}
-   
-    </>
+   </Box>
+    </Box>
   );
 }
 

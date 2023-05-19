@@ -32,7 +32,7 @@ function AboutApp(props) {
             margin:'30px'
           }}>
            {isTextVisible && <Typography variant="h4" sx={{ fontWeight:'strong',fontWeight:400, fontFamily: 'ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji' }}>
-            Unleash Your YouTube Potentioal with Real-time Analytics Chat! 
+            Unleash Your YouTube Potential with Real-Time Analytics Chat! 
             <Box bgcolor="#f2f2f2">
             <List sx={{ marginTop: '50px' }}>
             <ListItem>

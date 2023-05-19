@@ -1,4 +1,4 @@
-import { useState ,useEffect} from 'react';
+import { useState ,useEffect, useRef} from 'react';
 
 import { Typography,List,Avatar,Grid,ListItemAvatar, Button,InputAdornment,ImageListItem, ImageList, IconButton, TextField,ListItemText,ListItem,Paper, Divider, Box, createTheme, CircularProgress, } from '@mui/material';
 import httpRequest from '../services/api';
@@ -42,6 +42,7 @@ const theme = createTheme({
       }, []);
 
     return (
+        <Box>
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
           <Avatar sx={{ bgcolor: isUser ? 'primary.main' : 'secondary.main' }}>
@@ -65,6 +66,7 @@ const theme = createTheme({
           primaryTypographyProps={{ sx: { fontWeight: 'bold' } }}
         />
       </ListItem>
+      </Box>
     );
   };
 
@@ -74,6 +76,15 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
 //   const classes = useStyles();
   const [inputValue, setInputValue] = useState('');
   const [response, setResponse] = useState('');
+  const chatWindowRef = useRef(null);
+
+  const [isAutoScroll, setIsAutoScroll] = useState(true);
+
+  useEffect(() => {
+    if (isAutoScroll) {
+      chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+    }
+  }, [messages, isAutoScroll]);
 
 
   const handleInputChange = (event) => {
@@ -83,9 +94,16 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
   const handleSendClick = () => {
     if (inputValue !== '') {
       onSendMessage(inputValue, '');
+      setIsAutoScroll(true);
+
   
       const b = httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'question': inputValue, 'channelId': selectedChannel[0], 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
-      b.then(d => onSendMessage('', d))
+      
+        b.catch(error => {
+          console.error('An error occurred during the request:', error);
+        });
+        const c = httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question1', 'POST', { 'question': inputValue, 'channelId': selectedChannel[0], 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
+      c.then(d => onSendMessage('', d))
         .catch(error => {
           console.error('An error occurred during the request:', error);
           onSendMessage('', 'An error occurred');
@@ -99,6 +117,8 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && inputValue !== '') {
         onSendMessage(inputValue,'')
+        setIsAutoScroll(true);
+
 
         const b = httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'question': inputValue, 'channelId': selectedChannel[0], 'accessToken': accessToken }, { 'Content-Type': 'application/json' })
       b.then(d => onSendMessage('',d))
@@ -124,7 +144,7 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
       </Box>
       <Box sx={{ display:'flex',height: "100%", flexWrap: 'nowrap', gridAutoFlow: "column" }}>
 
-      <Box sx={{ flexGrow: 1, height: "100%", overflowY: "auto" }}>
+      <Box ref={chatWindowRef} sx={{ flexGrow: 1, height: "70%", overflowY: "auto" }}>
   
     <Grid container direction="column" spacing={1}>
       {messages.map((message, index) => (

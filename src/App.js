@@ -25,7 +25,7 @@ const App = () => {
         text: text && (<Box sx={{mt:'10px',width: '300px',padding:'10px', backgroundColor: '#779eb2', borderRadius:'30px' }}>
         <Typography sx={{ padding:'2px',whiteSpace: 'pre-wrap', fontWeight:'bold' }}>{text}</Typography> </Box>) ,
         sender: 
-        outputText && ( <Box sx={{display:"flex",position:'relative', justifyContent:"flex-end",marginLeft:'30px', marginRight:'0px',padding:'10px',backgroundColor: '#C8C8C8',borderRadius:'30px'}}><Typography sx={{ padding:'2px',whiteSpace: 'pre-wrap' }}>{outputText}</Typography></Box>)
+        outputText && ( <Box sx={{display:"flex",position:'relative', justifyContent:"flex-end",marginLeft:'50px', marginRight:'3px',padding:'20px',backgroundColor: '#C8C8C8',borderRadius:'30px'}}><Typography sx={{ padding:'2px',whiteSpace: 'pre-wrap' }}>{outputText}</Typography></Box>)
     
         // sender: outputText,
         

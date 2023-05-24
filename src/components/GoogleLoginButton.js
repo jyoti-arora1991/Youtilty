@@ -69,7 +69,7 @@ function GoogleLoginButton(props) {
         disabled={disabled}
         startIcon={<GoogleIcon style={{ color: '#4285F4' }}/>}
       >
-        Sign in with your Google 
+        Sign in with Google 
       </Button>
     )}
   />

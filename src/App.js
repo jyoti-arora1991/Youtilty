@@ -5,9 +5,10 @@ import Welcome1 from './components/welcome1.js';
 import GoogleLoginButton from './components/GoogleLoginButton';
 import ChannelListDropdown from './components/ChannelListDropdown';
 import img from './img/images12.jpeg';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import ChatWindow from "./components/ChatWindow";
 import Test from "./components/Test";
+
 
 const App = () => {
   const [channelList, setChannels] = useState([]);
@@ -21,16 +22,13 @@ const App = () => {
     setMessages((prevMessages) => [
       ...prevMessages,
       {
-        text,
-        sender: outputText,
-        style: { 
-          color: 'blue', 
-          backgroundColor: '#F5F5F5', 
-          borderRadius: '10px',
-          padding: '8px',
-          margin: '8px 0',
-          
-        }
+        text: text && (<Box sx={{mt:'10px',width: '300px',padding:'10px', backgroundColor: '#779eb2', borderRadius:'30px' }}>
+        <Typography sx={{ padding:'2px',whiteSpace: 'pre-wrap', fontWeight:'bold' }}>{text}</Typography> </Box>) ,
+        sender: 
+        outputText && ( <Box sx={{display:"flex",position:'relative', justifyContent:"flex-end",marginLeft:'30px', marginRight:'0px',padding:'10px',backgroundColor: '#C8C8C8',borderRadius:'30px'}}><Typography sx={{ padding:'2px',whiteSpace: 'pre-wrap' }}>{outputText}</Typography></Box>)
+    
+        // sender: outputText,
+        
       },
     ]);
   };

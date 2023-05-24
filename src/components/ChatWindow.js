@@ -129,6 +129,7 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
     setLoading(true)
     if (inputValue !== '') {
       onSendMessage(inputValue);
+      setInputValue('');
       setIsAutoScroll(true);
 
   
@@ -220,10 +221,10 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
       
 
       
-    <Box   sx={{backgroundImage: `url(${img})`, backgroundSize: 'cover',
-  backgroundPosition: 'center', height:'100vh', filter: 'brightness(1.2)'}}
+    <Box   sx={{ backgroundColor:'#fff', backgroundSize: 'cover',
+  backgroundPosition: 'center', height:'100vh',width:'100vw', filter: 'brightness(1.2)', flexDirection: 'column'}}
 >
-      <Box  >
+      <Box >
       <Header/>
       <Divider sx={{ borderWidth: '2px',  borderStyle: 'solid', margin:'3px' }}/> 
         <Typography textAlign={'center'} variant="h5" sx={{fontFamily:'cursive'}}> Hello! How can i assits you</Typography>

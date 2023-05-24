@@ -80,11 +80,14 @@ const App = () => {
   }
 
   return (
-    <div  style={{
+    <Box  sx={{
+      position: 'fixed',
       backgroundImage: `url(${img})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      minHeight: '100vh',
+      width:'100vw',
+      height:'100vh'
+      
     }}>
       <Routes>
         <Route path="/" element={
@@ -103,7 +106,7 @@ const App = () => {
       messages={messages}
       onSendMessage={handleSendMessage} */}
     {/* /> */} 
-    </div>
+    </Box>
   );
 }
 

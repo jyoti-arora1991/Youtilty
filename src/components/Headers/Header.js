@@ -30,7 +30,7 @@ function Header(props) {
         display: "flex",
         // justifyContent: "center",
         // alignItems: "center",
-        width: "100%",
+        width: "100vh",
       }}
     >
       {/* <Avatar

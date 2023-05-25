@@ -4,7 +4,7 @@ import WelcomePage from './components/WelcomePage';
 import Welcome1 from './components/welcome1.js';
 import GoogleLoginButton from './components/GoogleLoginButton';
 import ChannelListDropdown from './components/ChannelListDropdown';
-import img from './img/images12.jpeg';
+import img from './img/img21.webp';
 import { Box, Typography } from '@mui/material';
 import ChatWindow from "./components/ChatWindow";
 import Test from "./components/Test";

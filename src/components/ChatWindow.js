@@ -118,7 +118,7 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
   
 
 const fetchAns = async () => {
-    const timeout = 20000; // 1 minute
+    const timeout = 60000; // 1 minute
     const retryInterval = 10000; // 10 seconds (modified value)
     const startTime = Date.now();
     let retryCount = 0;
@@ -154,6 +154,7 @@ const fetchAns = async () => {
       await new Promise(resolve => setTimeout(resolve, retryInterval)); // Wait for the specified retry interval before the next iteration
     }
   setLoading(false)
+  
 
     throw new Error("Request timeout"); // Throw an error if no response received within one minute
   };
@@ -169,12 +170,14 @@ const fetchAns = async () => {
     setLoading(true)
     if (inputValue !== '') {
       onSendMessage(inputValue);
-      setInputValue('');
-      setIsAutoScroll(true);
       
+      setIsAutoScroll(true);
 
+      
+       
       const e = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry':false,'question': inputValue, 'channelId': selectedChannel[0], 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
       console.log("sqlQuery")
+      setInputValue('');
       console.log(e)
       await fetchAns();
       

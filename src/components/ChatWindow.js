@@ -81,46 +81,86 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
     setInputValue(value || event.target.value);
   };
 
-  const fetchSqlQuery = async () => {
-    while (true) {
-      const a1 = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/get_sql', 'POST', { 'channelId': selectedChannel[0] }, { 'Content-Type': 'application/json' });
-      console.log("sqlQuery1");
-      console.log(a1);
-      console.log(a1.data)
+//   const fetchSqlQuery = async () => {
+//     const startTime = Date.now();
+//     const timeout = 60000; // 1 minute
   
-      if (a1.data) {
-        const sqlQuery = a1.data;
-        setSqlQuery(sqlQuery)
-        console.log("Received SQL query:", sqlQuery);
-        // Do something with the received SQL query
-        break;  // Exit the loop since we received the sql_query
-      } else {
-        console.log("Request submitted");
-        await new Promise(resolve => setTimeout(resolve, 10000));  // Wait for 1 second before making the next request
-      }
-    }
-  };
+//     while (true) {
+//       const a1 = await httpRequest(
+//         'https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/get_sql',
+//         'POST',
+//         { 'channelId': selectedChannel[0] },
+//         { 'Content-Type': 'application/json' }
+//       );
+  
+//       console.log("sqlQuery1");
+//       console.log(a1);
+//       console.log(a1.data);
+  
+//       if (a1.data) {
+//         const sqlQuery = a1.data;
+//         setSqlQuery(sqlQuery);
+//         console.log("Received SQL query:", sqlQuery);
+//         // Do something with the received SQL query
+//         break; // Exit the loop since we received the sql_query
+//       } else {
+//         console.log("Request submitted");
+//         const elapsedTime = Date.now() - startTime;
+//         if (elapsedTime >= timeout) {
+//           console.log("Timeout occurred");
+//           break; // Exit the loop after the timeout
+//         } else {
+//           await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 1 second before making the next request
+//         }
+//       }
+//     }
+//   };
+  
 
-  const fetchAns = async () => {
-    while (true) {
-      const a1 = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/get_ans', 'POST', { 'channelId': selectedChannel[0] }, { 'Content-Type': 'application/json' });
-      console.log("answ1");
-      console.log(a1);
-      console.log(a1.data)
+const fetchAns = async () => {
+    const timeout = 20000; // 1 minute
+    const retryInterval = 10000; // 10 seconds (modified value)
+    const startTime = Date.now();
+    let retryCount = 0;
   
-      if (a1.data) {
-        const ans = a1.data;
-        setAns(ans)
-        onSendMessage('', ans);
-        console.log("Received ans :",ans);
-        // Do something with the received SQL query
-        break;  // Exit the loop since we received the sql_query
-      } else {
-        console.log("Request submitted");
-        await new Promise(resolve => setTimeout(resolve, 10000));  // Wait for 1 second before making the next request
+    while (Date.now() - startTime < timeout) {
+      try {
+        const requestPromise = httpRequest(
+          'https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/get_ans',
+          'POST',
+          { 'channelId': selectedChannel[0] },
+          { 'Content-Type': 'application/json' },
+          retryInterval
+        );
+  
+        const response = await requestPromise;
+  
+        if (response && response.data) {
+          const ans = response.data;
+          setAns(ans);
+          setLoading(false);
+          onSendMessage('', ans);
+          console.log("Received ans:", ans);
+          return; // Exit the function since we received the answer
+        } else {
+          console.log("Request submitted");
+          // Handle the case when the request is submitted but no answer is received
+        }
+      } catch (error) {
+        console.log("Error occurred:", error.message);
+        // Handle the case when the request times out
       }
+  
+      await new Promise(resolve => setTimeout(resolve, retryInterval)); // Wait for the specified retry interval before the next iteration
     }
+  setLoading(false)
+
+    throw new Error("Request timeout"); // Throw an error if no response received within one minute
   };
+  
+  
+  
+  
 
 
   const handleSendClick =async () =>{
@@ -131,16 +171,17 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
       onSendMessage(inputValue);
       setInputValue('');
       setIsAutoScroll(true);
-
-  
-      
       
 
       const e = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry':false,'question': inputValue, 'channelId': selectedChannel[0], 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
-    //   const sqlQuery = b.data.sqlQuery;
       console.log("sqlQuery")
       console.log(e)
-      await fetchSqlQuery();
+      await fetchAns();
+      
+      console.log("this is c")
+      console.log(ans)
+    }
+      };
 
       
 
@@ -168,21 +209,21 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
     //   console.log("sqlQuery")
     //   console.log(b)
     
-    const c = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question1', 'POST', { 'sqlQuery': e, 'question': inputValue, 'channelId': selectedChannel[0], 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
-    await fetchAns();
-    setLoading(false);
-    console.log("this is c")
-    console.log(ans)
-    // onSendMessage('', ans);
+//     const c = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question1', 'POST', { 'sqlQuery': e, 'question': inputValue, 'channelId': selectedChannel[0], 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
+//     await fetchAns();
+//     setLoading(false);
+//     console.log("this is c")
+//     console.log(ans)
+//     // onSendMessage('', ans);
         
     
 
     
-      setInputValue('');
-      console.log("hi tibs ddtgj");
-      console.log(selectedChannel);
-    }
-  };
+//       setInputValue('');
+//       console.log("hi tibs ddtgj");
+//       console.log(selectedChannel);
+//     }
+//   };
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && inputValue !== '') {

@@ -123,6 +123,7 @@ const fetchAns = async () => {
       const e = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry':false,'question': inputValue, 'channelId': selectedChannel[0], 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
       console.log("sqlQuery")
       setInputValue('');
+      setPT('');
       console.log(e)
       await fetchAns();
       

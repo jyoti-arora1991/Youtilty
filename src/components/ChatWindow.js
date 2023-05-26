@@ -51,7 +51,7 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
   
 
 const fetchAns = async () => {
-    const timeout = 90000; 
+    const timeout = 1800000; 
     const retryInterval = 10000; // 10 seconds (modified value)
     const startTime = Date.now();
     let retryCount = 0;

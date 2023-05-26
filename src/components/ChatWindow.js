@@ -1,50 +1,18 @@
 import { useState ,useEffect, useRef} from 'react';
 
-import { Typography,Avatar,Grid,ListItemAvatar, InputAdornment, IconButton, TextField,ListItemText,ListItem, Divider, Box, createTheme, CircularProgress,LinearProgress } from '@mui/material';
+import { Typography,InputAdornment, IconButton, TextField,ListItemText,ListItem, Divider, Box, createTheme, CircularProgress } from '@mui/material';
 import httpRequest from '../services/api';
-import Layout from './Layout/Layout';
 import Header from './Headers/Header';
 import { Send } from '@mui/icons-material';
-import img from '../img/img7.jpeg'
 import Autocomplete from '@mui/material/Autocomplete';
 
 
 
-
-
-const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#2196f3',
-      },
-      secondary: {
-        main: '#4caf50',
-      },
-    },
-  });
-
-  const ChatMessage = ({ message, isUser }) => {
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-
-    const handleLoading = () => {
-        setLoading(true);
-        setTimeout(() => {
-            
-            setLoading(false);
-            
-          }, 2000);
-    };
-    
+const ChatMessage = ({ message, isUser }) => {
 
     return (
         <Box display="flex" alignItems="center" >
       <ListItem >
-        {/* <ListItemAvatar>
-          <Avatar sx={{ bgcolor: isUser ? 'primary.main' : 'secondary.main' }}>
-            {isUser ? 'U' : 'B'}
-          </Avatar>
-        </ListItemAvatar> */}
         <ListItemText
           primary={message.text}
           secondary={isUser}
@@ -58,10 +26,8 @@ const theme = createTheme({
 
 
 function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
-//   const classes = useStyles();
 
   const [inputValue, setInputValue] = useState('');
-  const [sqlQuery, setSqlQuery] = useState('');
   const [ans, setAns] = useState('');
   const chatWindowRef = useRef(null);
   const [loading, setLoading] = useState(true);
@@ -81,44 +47,11 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
     setInputValue(value || event.target.value);
   };
 
-//   const fetchSqlQuery = async () => {
-//     const startTime = Date.now();
-//     const timeout = 60000; // 1 minute
-  
-//     while (true) {
-//       const a1 = await httpRequest(
-//         'https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/get_sql',
-//         'POST',
-//         { 'channelId': selectedChannel[0] },
-//         { 'Content-Type': 'application/json' }
-//       );
-  
-//       console.log("sqlQuery1");
-//       console.log(a1);
-//       console.log(a1.data);
-  
-//       if (a1.data) {
-//         const sqlQuery = a1.data;
-//         setSqlQuery(sqlQuery);
-//         console.log("Received SQL query:", sqlQuery);
-//         // Do something with the received SQL query
-//         break; // Exit the loop since we received the sql_query
-//       } else {
-//         console.log("Request submitted");
-//         const elapsedTime = Date.now() - startTime;
-//         if (elapsedTime >= timeout) {
-//           console.log("Timeout occurred");
-//           break; // Exit the loop after the timeout
-//         } else {
-//           await new Promise(resolve => setTimeout(resolve, 1000)); // Wait for 1 second before making the next request
-//         }
-//       }
-//     }
-//   };
+
   
 
 const fetchAns = async () => {
-    const timeout = 90000; // 1 minute
+    const timeout = 90000; 
     const retryInterval = 10000; // 10 seconds (modified value)
     const startTime = Date.now();
     let retryCount = 0;
@@ -142,20 +75,26 @@ const fetchAns = async () => {
           onSendMessage('', ans);
           console.log("Received ans:", ans);
           return; // Exit the function since we received the answer
-        } else {
+          
+        }
+        else if (response.status === 500) {
+            setError("AI not able to process the request right now")
+        } 
+        else {
           console.log("Request submitted");
           // Handle the case when the request is submitted but no answer is received
         }
       } catch (error) {
         console.log("Error occurred:", error.message);
+        alert('Request timeout');
         // Handle the case when the request times out
       }
   
       await new Promise(resolve => setTimeout(resolve, retryInterval)); // Wait for the specified retry interval before the next iteration
     }
-  setLoading(false)
-  
-
+    setLoading(false)
+    
+    setError("Errir while processing your request")
     throw new Error("Request timeout"); // Throw an error if no response received within one minute
   };
   
@@ -192,41 +131,14 @@ const fetchAns = async () => {
       
     
 
-    //   const a1 = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/get_sql', 'POST',{'channelId': selectedChannel[0]},Headers={ 'Content-Type': 'application/json' });
-    // //   const sqlQuery = b.data.sqlQuery;
-    //   console.log("sqlQuery1")
-    //   console.log(a1)
 
 
 
-    //   const a2 = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/get_sql', 'POST',{'channelId': selectedChannel[0]},Headers={ 'Content-Type': 'application/json' });
-    // //   const sqlQuery = b.data.sqlQuery;
-    //   console.log("sqlQuery1")
-    //   console.log(a2)
-
-
-
-
-    //   const b = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry':true,'question': inputValue, 'channelId': selectedChannel[0], 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
-    // //   const sqlQuery = b.data.sqlQuery;
-    //   console.log("sqlQuery")
-    //   console.log(b)
-    
-//     const c = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question1', 'POST', { 'sqlQuery': e, 'question': inputValue, 'channelId': selectedChannel[0], 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
-//     await fetchAns();
-//     setLoading(false);
-//     console.log("this is c")
-//     console.log(ans)
-//     // onSendMessage('', ans);
+   
         
     
 
-    
-//       setInputValue('');
-//       console.log("hi tibs ddtgj");
-//       console.log(selectedChannel);
-//     }
-//   };
+   
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && inputValue !== '') {
@@ -266,12 +178,12 @@ const fetchAns = async () => {
 
       
     <Box   sx={{ backgroundColor:'#fff', backgroundSize: 'cover',
-  backgroundPosition: 'center', height:'100vh',width:'100vw', filter: 'brightness(1.2)', flexDirection: 'column'}}
+  backgroundPosition: 'center', height:'100vh',width:'100vw',flexDirection: 'column'}}
 >
       <Box >
       <Header/>
       <Divider sx={{ borderWidth: '2px',  borderStyle: 'solid', margin:'3px' }}/> 
-        <Typography textAlign={'center'} variant="h5" sx={{fontFamily:'cursive'}}> Hello! How can i assits you</Typography>
+        <Typography textAlign={'center'} variant="h5" > Hello! How can i assits you</Typography>
       </Box>
       <Box sx={{ display:'flex',height: "100%", flexWrap: 'nowrap', gridAutoFlow: "column" }}>
 

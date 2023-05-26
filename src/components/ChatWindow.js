@@ -8,7 +8,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 
 
-const ChatMessage = ({ message, isUser }) => {
+const ChatMessage = ({ message, isUser,processingTime }) => {
 
     return (
         <Box display="flex" alignItems="center" >
@@ -16,8 +16,12 @@ const ChatMessage = ({ message, isUser }) => {
         <ListItemText
           primary={message.text}
           secondary={isUser}
+          
          
         />
+        {processingTime && (
+          <ListItemText secondary={`Processing Time: ${processingTime} ms`} />
+        )}
       </ListItem>
       </Box>
     );
@@ -29,6 +33,7 @@ function ChatWindow({messages, onSendMessage, selectedChannel, accessToken }) {
 
   const [inputValue, setInputValue] = useState('');
   const [ans, setAns] = useState('');
+  const [pt, setPT] = useState('');
   const chatWindowRef = useRef(null);
   const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -72,6 +77,7 @@ const fetchAns = async () => {
           const ans = response.data;
           setAns(ans);
           setLoading(false);
+          setPT(Date.now() - startTime)
           onSendMessage('', ans);
           console.log("Received ans:", ans);
           return; // Exit the function since we received the answer
@@ -124,19 +130,6 @@ const fetchAns = async () => {
       console.log(ans)
     }
       };
-
-      
-
-
-      
-    
-
-
-
-
-   
-        
-    
 
    
 
@@ -193,7 +186,7 @@ const fetchAns = async () => {
       {messages.map((message, index) => (
         <Box item key={index}>
             
-          <ChatMessage message={message} isUser={message.isUser} />
+          <ChatMessage message={message} isUser={message.isUser}  processingTime={pt}/>
           {index === messages.length - 1 && loading ? (
         <>
           <CircularProgress  />
@@ -205,6 +198,7 @@ const fetchAns = async () => {
         message.sender
       )}
         </Box>
+        
         
       ))}
       

@@ -1,0 +1,303 @@
+.howAreYou {
+  flex: 1;
+  position: relative;
+  line-height: 22px;
+}
+.chatBubblesenddefault {
+  flex: 0 1 auto;
+  border-radius: var(--br-xs) var(--br-xs) var(--br-xs) var(--br-9xs);
+  background-color: var(--black-and-white-white);
+  /* height: 56px; */
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-xs);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: flex-start;
+}
+.iconfilledit {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+.chatBubblesenddefaultParent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  padding: 0 42px 0 0;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 100px;
+  /* background-color: #202325; */
+}
+.asAnAi {
+  align-self: stretch;
+  position: relative;
+  line-height: 22px;
+  /* background-color: #202325; */
+}
+.chatBubblerecevedreceivedChild {
+  position: relative;
+  background-color: var(--others-borders);
+  /* background-color: #202325; */
+  width: 319px;
+  height: 2px;
+  align-items: right;
+  justify-content: flex-end;
+  
+}
+.iconoutlinelike {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.iconoutlinelikeParent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-xs);
+}
+.iconfillclipboard {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+.copy {
+  position: relative;
+  line-height: 22px;
+}
+.frameGroup,
+.iconfillclipboardParent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
+.iconfillclipboardParent {
+  justify-content: flex-start;
+  gap: 5px;
+}
+.frameGroup {
+  align-self: stretch;
+  justify-content: space-between;
+  color: var(--black-and-white-black);
+}
+.chatBubblerecevedreceived,
+.frameParent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* background-color: #202325; */
+}
+.chatBubblerecevedreceived {
+  align-self: stretch;
+  border-radius: var(--br-xs) var(--br-xs) var(--br-xs) var(--br-9xs);
+  background-color: var(--others-text-bg);
+  /* background-color: #202325; */
+  overflow: hidden;
+  padding: var(--padding-xs);
+  justify-content: center;
+  width: auto;
+  /* gap: 16px; */
+  display: block;
+  margin-left:10px;
+  margin-right: 40px;
+  align-self: flex-end;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  white-space: pre-line;
+  
+}
+.frameParent {
+  position: absolute;
+  width: 89.1%;
+  top: 113px;
+  right: 5.59%;
+  left: 5.32%;
+  justify-content: flex-start;
+  gap: 9px;
+}
+.avatarIcon,
+.iconfillmenu {
+  position: relative;
+  width: 31px;
+  height: 24px;
+}
+.avatarIcon {
+  width: 44px;
+  height: 44px;
+}
+.youtility {
+  position: relative;
+  line-height: 20px;
+}
+.alwaysActiveChild {
+  position: relative;
+  border-radius: 50%;
+  background-color: #7dde86;
+  width: 8px;
+  height: 8px;
+}
+.alwaysActive1 {
+  position: relative;
+  line-height: 16px;
+  font-weight: 500;
+}
+.alwaysActive {
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #72777a;
+}
+.alwaysActive,
+.fitbot,
+.nameActivity {
+  display: flex;
+  justify-content: flex-start;
+}
+.nameActivity {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.fitbot {
+  width: 170px;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--gap-xs);
+}
+.hugeIconusersoliduserCirc {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.iconfillmenuParent {
+  position: absolute;
+  width: 97.87%;
+  top: 11px;
+  right: 2.39%;
+  left: -0.25%;
+  background-color: var(--others-screen-bg);
+  display: flex;
+  flex-direction: row;
+  padding: 0 17px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #202325;
+  font-family: var(--font-dm-sans);
+}
+.vectorIcon {
+  position: absolute;
+  height: 0.22%;
+  width: 0.67%;
+  top: 98.55%;
+  right: -0.47%;
+  bottom: 1.23%;
+  left: 99.79%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.askMeAnything {
+  flex: 1;
+  position: relative;
+  line-height: 22px;
+  display: inline-block;
+  height: 25px;
+  z-index: 0;
+}
+.microphoneonIcon,
+.vuesaxlinearmicrophone2 {
+  position: absolute;
+  margin: 0 !important;
+  top: 37px;
+  left: 259px;
+  width: 24px;
+  height: 24px;
+  z-index: 1;
+}
+.microphoneonIcon {
+  width: 11.68%;
+  top: 11px;
+  right: 6.21%;
+  left: 82.11%;
+  max-width: 100%;
+  overflow: hidden;
+  height: 38px;
+  z-index: 2;
+}
+.askMeAnythingParent {
+  flex: 1;
+  border-radius: 30px;
+  background-color: var(--others-text-bg);
+  box-shadow: 5px 4px 20px rgba(0, 0, 0, 0.13);
+  height: 64px;
+  display: flex;
+  flex-direction: row;
+  padding: 0 37px 0 22px;
+  box-sizing: border-box;
+  align-items: center;
+  position: relative;
+  gap: 10px;
+  text-align: center;
+}
+.sendIcon {
+  position: relative;
+  width: 48.47px;
+  height: 55px;
+}
+.frameContainer {
+  position: fixed;
+  width: 90.32%;
+  bottom: 0;
+  right: 5.41%;
+  left: 4.27%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 11px;
+  color: var(--others-grey-01);
+}
+.questionPage {
+  position: relative;
+  background-color: var(--others-screen-bg);
+  width: 100%;
+  height: 850px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--app-body-size);
+  color: var(--typography-body);
+  font-family: var(--app-body);
+}
+
+.conversationContainer {
+  height: 650px; /* Adjust the height as per your requirement */
+  overflow-y: auto;
+  /* background-color: #202325; */
+}
+
+.suggestionsList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  /* background-color: #f1f1f1; */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.suggestionsList li {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+

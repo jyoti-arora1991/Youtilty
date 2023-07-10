@@ -1,0 +1,324 @@
+.backgroundColor {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  /* background-color: #7364b0; */
+  height: 812px;
+}
+.alreadyHaveAn {
+  font-weight: 600;
+}
+.signIn {
+  color: var(--color-darkblue);
+}
+.alreadyHaveAnContainer {
+  position: absolute;
+  top: 730px;
+  left: calc(50% - 104.5px);
+  mix-blend-mode: normal;
+}
+.ball1Copy,
+.ball1Icon,
+.ball2Icon,
+.welcomeShadowIcon {
+  position: absolute;
+  max-width: 100%;
+  /* overflow: hidden; */
+  max-height: 100%;
+  /* object-fit: cover; */
+}
+.welcomeShadowIcon {
+  height: 1.35%;
+  width: 54.93%;
+  /* top: 33.62%; */
+  /* right: 28%; */
+  bottom: 65.02%;
+  left: 17.07%;
+  /* mix-blend-mode: normal; */
+}
+.ball1Copy,
+.ball1Icon,
+.ball2Icon {
+  height: 3.37%;
+  width: 3.27%;
+  top: 42.93%;
+  right: 87.15%;
+  bottom: 53.7%;
+  left: 9.57%;
+}
+.ball1Copy,
+.ball2Icon {
+  height: 3.11%;
+  width: 3.02%;
+  top: 49.67%;
+  right: 28.97%;
+  bottom: 47.22%;
+  left: 68.01%;
+}
+.ball2Icon {
+  top: 70.43%;
+  right: 10.58%;
+  bottom: 26.46%;
+  left: 86.4%;
+}
+.confetti2Icon,
+.confetti3Icon,
+.confetti4Icon,
+.partyConfettisChild,
+.square5Icon,
+.square6Icon,
+.square7Icon {
+  position: absolute;
+  height: 4.41%;
+  width: 4.79%;
+  top: 59.01%;
+  right: 93.45%;
+  bottom: 36.58%;
+  left: 1.76%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.confetti2Icon,
+.confetti3Icon,
+.confetti4Icon,
+.square5Icon,
+.square6Icon,
+.square7Icon {
+  height: 4.93%;
+  top: 29.44%;
+  right: 23.17%;
+  bottom: 65.63%;
+  left: 72.04%;
+}
+.confetti2Icon,
+.confetti3Icon,
+.confetti4Icon,
+.square5Icon,
+.square6Icon {
+  top: 92.74%;
+  right: 24.18%;
+  bottom: 2.33%;
+  left: 71.03%;
+}
+.confetti2Icon,
+.confetti3Icon,
+.confetti4Icon,
+.square5Icon {
+  height: 11.68%;
+  width: 14.59%;
+  top: 0;
+  right: 9.51%;
+  bottom: 88.32%;
+  left: 75.9%;
+}
+.confetti2Icon,
+.confetti3Icon,
+.square5Icon {
+  height: 14.56%;
+  width: 10.4%;
+  top: 48.39%;
+  right: 8.58%;
+  bottom: 37.05%;
+  left: 81.02%;
+}
+.confetti2Icon,
+.square5Icon {
+  height: 12.88%;
+  width: 12.65%;
+  top: 82.55%;
+  right: 85.58%;
+  bottom: 4.57%;
+  left: 1.76%;
+}
+.square5Icon {
+  height: 3.76%;
+  width: 3.65%;
+  top: 72.47%;
+  right: 87.36%;
+  bottom: 23.77%;
+  left: 8.99%;
+}
+.confetti1Icon,
+.partyConfettisItem,
+.square1Icon,
+.square2Icon,
+.square3Icon,
+.square4Icon {
+  position: absolute;
+  height: 4.93%;
+  width: 4.79%;
+  top: 95.07%;
+  right: 71.54%;
+  bottom: 0;
+  left: 23.68%;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+}
+.confetti1Icon,
+.partyConfettisItem,
+.square1Icon,
+.square2Icon,
+.square3Icon {
+  top: 31.25%;
+  right: 59.45%;
+  bottom: 63.82%;
+  left: 35.77%;
+}
+.confetti1Icon,
+.partyConfettisItem,
+.square1Icon,
+.square2Icon {
+  height: 5.12%;
+  width: 3.88%;
+  top: 56.07%;
+  right: 65.39%;
+  bottom: 38.81%;
+  left: 30.72%;
+}
+.confetti1Icon,
+.partyConfettisItem,
+.square1Icon {
+  height: 5.28%;
+  width: 4.35%;
+  top: 82.47%;
+  right: 8.73%;
+  bottom: 12.25%;
+  left: 86.92%;
+}
+.confetti1Icon,
+.partyConfettisItem {
+  height: 13.92%;
+  width: 11.8%;
+  top: 5.84%;
+  right: 86.44%;
+  bottom: 80.24%;
+  left: 1.76%;
+}
+.partyConfettisItem {
+  height: 7.52%;
+  width: 7.3%;
+  top: 25.54%;
+  right: 0;
+  bottom: 66.93%;
+  left: 92.7%;
+}
+.partyConfettis {
+  position: absolute;
+  height: 47.47%;
+  width: 105.87%;
+  top: 7.95%;
+  right: -4%;
+  bottom: 44.58%;
+  left: -1.87%;
+  mix-blend-mode: normal;
+}
+.youtility {
+  align-self: stretch;
+  position: relative;
+  font-weight: 800;
+  display: inline-block;
+  height: 93px;
+  flex-shrink: 0;
+  transform: rotate(-0.13deg);
+  transform-origin: 0 0;
+}
+.unleashYourYoutube {
+  margin: 0;
+}
+.unleashYourYoutubeContainer {
+  align-self: stretch;
+  position: relative;
+  font-size: 20px;
+  color: var(--color-black);
+  mix-blend-mode: normal;
+}
+.superchargeYourChannel {
+  margin-block-start: 0;
+  margin-block-end: 5px;
+}
+.superchargeYourChannelContainer {
+  align-self: stretch;
+  position: relative;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-darkgray-100);
+  mix-blend-mode: normal;
+}
+.greenRectangleIcon {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+.getStarted {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 10px;
+  left: 89px;
+  font-size: var(--app-body-size);
+  font-weight: 800;
+  font-family: var(--font-nunito-sans);
+  color: var(--others-text-bg);
+  text-align: left;
+  display: inline-block;
+}
+.greenRectangle {
+  position: relative;
+  width: 272px;
+  height: 41.75px;
+  mix-blend-mode: normal;
+}
+.youtilityParent {
+  position: absolute;
+  width: 131.73%;
+  top: 198px;
+  right: -18.4%;
+  left: -13.33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 63px;
+  font-size: 50px;
+  color: var(--color-darkblue);
+}
+.first,
+.image1Icon {
+  width: 100%;
+  overflow: hidden;
+}
+.image1Icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  max-width: 100%;
+  height: 192px;
+  object-fit: cover;
+}
+.first {
+  position: fixed;
+  background-color: var(--others-text-bg);
+  height: 100%;
+  /* mix-blend-mode: normal; */
+  text-align: center;
+  /* background-color: aquamarine; */
+  /* font-size: 30px; */
+  color: var(--color-darkgray-100);
+  font-family: var(--font-nunito-sans);
+}

@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@600;700;800&display=swap");
+/* html {
+  height: 100vh;
+} */
+body {
+  /* display: flex; */
+  /* height: 100vh; */
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --app-body: Rubik;
+  --font-dm-sans: "DM Sans";
+  --font-nunito: Nunito;
+  --font-nunito-sans: "Nunito Sans";
+
+  /* font sizes */
+  --app-body-size: 17px;
+
+  /* Colors */
+  --others-screen-bg: #f2efe4;
+  --others-text-bg: #fff;
+  --others-grey-01: #a6a39d;
+  --color-darkgray-100: #989da3;
+  --black-and-white-black: #100f0d;
+  --others-borders: #e9e4d1;
+  --typography-body: #403e39;
+  --black-and-white-white: #fffbf2;
+  --color-black: #000;
+  --color-darkblue: #2e34cc;
+
+  /* Gaps */
+  --gap-xs: 12px;
+
+  /* Paddings */
+  --padding-xs: 12px;
+
+  /* border radiuses */
+  --br-xs: 12px;
+  --br-9xs: 4px;
+}

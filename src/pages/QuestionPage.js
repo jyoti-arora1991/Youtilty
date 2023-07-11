@@ -68,69 +68,99 @@ const QuestionPage = () => {
     // let accessToken='ya29.a0AWY7CkmrQ3nWhGC6G7N-px0a95H78T-ELzndBwC0jD6k0ZFm5Uvqd3JDWM9OufpogPquVXTm6QfolTxsZB90hIxBNx-5gIa4Wo5yRbGsh5GGoH9FMXGoHl3YgE1upoJ2pQsR8wsDhMk0afnmHZFwjUJeJID6-QaCgYKAT0SARMSFQG1tDrpM8-_O_zm4_Wh7mskzYHKlA0165';
     // let channel_id='UCcA80NqKraq7phtzMMgP4nw';
     setChannelid(channel_id)
-    const e = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry':false,'question': userMessage, 'channelId': channel_id, 'accessToken': access_token }, { 'Content-Type': 'application/json' });
-    
-    await fetchAns();
-  };
-
-  const fetchAns = async () => {
-    const timeout =  120000; 
-    const retryInterval = 10000; // 10 seconds (modified value)
-    const startTime = Date.now();
-  
-    while (Date.now() - startTime < timeout) {
-      try {
-        const requestPromise = httpRequest(
-          'https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/get_ans',
-          'POST',
-          { 'channelId':'UCcA80NqKraq7phtzMMgP4nw' },
-          { 'Content-Type': 'application/json' },
-          retryInterval
-        );
-  
-        const response = await requestPromise;
-        console.log("response.data")
-        console.log(response.data)
-  
-        if (response && response.data) {
-          const ans = response.data;
-          
-          console.log("issub1")
-          console.log(response.data)
-          console.log("issub2")
-          // setPT(Date.now() - startTime)
-
-          console.log("and")
-          console.log(ans)
-            setConversation((prevConversation) => [
-              ...prevConversation,
-              { sender: 'bot', message: ans },
-            ]);
-          console.log("Received ans:", ans);
-          setLoading(false);
-
-          return; // Exit the function since we received the answer
-          
-        }
-        else if (response.status === 500) {
-            console.log("AI not able to process the request right now")
-        } 
-        else {
-          console.log("Request submitted");
-          // Handle the case when the request is submitted but no answer is received
-        }
-      } catch (error) {
-        console.log("Error occurred:", error.message);
-        // Handle the case when the request times out
-      }
-  
-      await new Promise(resolve => setTimeout(resolve, retryInterval)); // Wait for the specified retry interval before the next iteration
-    }
+    // const e = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry':false,'question': userMessage, 'channelId': channel_id, 'accessToken': access_token }, { 'Content-Type': 'application/json' });
+    try {
+      const e = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry':false,'question': userMessage, 'channelId': channel_id, 'accessToken': access_token }, { 'Content-Type': 'application/json' });
+      // Handle the response here if the request is successful
+      console.log("answer")
+    console.log(e.message)
+    const ans=e.message
     setLoading(false)
-    
-    console.log("Errir while processing your request")
-    throw new Error("Request timeout"); // Throw an error if no response received within one minute
+    setConversation((prevConversation) => [
+                  ...prevConversation,
+                  { sender: 'bot', message: ans },
+                ]);
+    } catch (error) {
+      setLoading(false)
+      console.error('An error occurred:', error);
+      const err1="System is overloaded, try again later"
+      alert(err1)
+      // setConversation((prevConversation) => [
+      //   ...prevConversation,
+      //   { sender: 'bot', message: err1 },
+      // ]);
+      // Handle the error here
+    }
+  //   console.log("answer")
+  //   console.log(e.message)
+  //   const ans=e.message
+  //   setLoading(false)
+  //   setConversation((prevConversation) => [
+  //                 ...prevConversation,
+  //                 { sender: 'bot', message: ans },
+  //               ]);
+
+  //   // await fetchAns();
   };
+
+  // const fetchAns = async () => {
+  //   const timeout =  120000; 
+  //   const retryInterval = 10000; // 10 seconds (modified value)
+  //   const startTime = Date.now();
+  
+  //   while (Date.now() - startTime < timeout) {
+  //     try {
+  //       const requestPromise = httpRequest(
+  //         'https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/get_ans',
+  //         'POST',
+  //         { 'channelId':'UCcA80NqKraq7phtzMMgP4nw' },
+  //         { 'Content-Type': 'application/json' },
+  //         retryInterval
+  //       );
+  
+  //       const response = await requestPromise;
+  //       console.log("response.data")
+  //       console.log(response.data)
+  
+  //       if (response && response.data) {
+  //         const ans = response.data;
+          
+  //         console.log("issub1")
+  //         console.log(response.data)
+  //         console.log("issub2")
+  //         // setPT(Date.now() - startTime)
+
+  //         console.log("and")
+  //         console.log(ans)
+  //           setConversation((prevConversation) => [
+  //             ...prevConversation,
+  //             { sender: 'bot', message: ans },
+  //           ]);
+  //         console.log("Received ans:", ans);
+  //         setLoading(false);
+
+  //         return; // Exit the function since we received the answer
+          
+  //       }
+  //       else if (response.status === 500) {
+  //           console.log("AI not able to process the request right now")
+  //       } 
+  //       else {
+  //         console.log("Request submitted");
+  //         // Handle the case when the request is submitted but no answer is received
+  //       }
+  //     } catch (error) {
+  //       console.log("Error occurred:", error.message);
+  //       // Handle the case when the request times out
+  //     }
+  
+  //     await new Promise(resolve => setTimeout(resolve, retryInterval)); // Wait for the specified retry interval before the next iteration
+  //   }
+  //   setLoading(false)
+    
+  //   console.log("Errir while processing your request")
+  //   throw new Error("Request timeout"); // Throw an error if no response received within one minute
+  // };
   
   const Suggestions = [
     "Help me identify any issues in my channel and provide suggestions for improvement?",

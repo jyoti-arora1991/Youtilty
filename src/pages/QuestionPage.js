@@ -51,7 +51,7 @@ const QuestionPage = () => {
   const handleInputKeyPress = async (event) => {
     let userMessage='';
     if (event.key === 'Enter' || event.type === 'click' ){
-      const userMessage = inputRef.current.value.trim();
+      userMessage = inputRef.current.value.trim();
       console.log("userMessage")
       console.log(userMessage)
       if (userMessage !== '') {

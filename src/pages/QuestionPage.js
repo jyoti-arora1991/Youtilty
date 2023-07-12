@@ -70,6 +70,8 @@ const QuestionPage = () => {
     setChannelid(channel_id)
     // const e = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry':false,'question': userMessage, 'channelId': channel_id, 'accessToken': access_token }, { 'Content-Type': 'application/json' });
     try {
+      console.log("userMessageuserMessage")
+      console.log(userMessage)
       const e = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry':false,'question': userMessage, 'channelId': channel_id, 'accessToken': access_token }, { 'Content-Type': 'application/json' });
       // Handle the response here if the request is successful
       console.log("answer")

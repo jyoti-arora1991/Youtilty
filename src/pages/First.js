@@ -3,13 +3,13 @@ import {Box} from '@mui/material';
 const First = () => {
   return (
     <Box className={styles.first}>
-      <Box>
+      {/* <Box>
       <img
         className={styles.welcomeShadowIcon}
         alt=""
         src="/welcome-shadow@2x.png"
       />
-      </Box>
+      </Box> */}
       <Box className={styles.partyConfettis}>
         <img className={styles.ball1Icon} alt="" src="/ball-1@2x.png" />
         <img className={styles.ball1Copy} alt="" src="/ball-1-copy@2x.png" />
@@ -38,6 +38,11 @@ const First = () => {
       </Box>
       <Box className={styles.youtilityParent} id="title">
         <Box className={styles.youtility}>YOUTILITY</Box>
+      <img
+        className={styles.welcomeShadowIcon}
+        alt=""
+        src="/welcome-shadow@2x.png"
+      />
         <b className={styles.unleashYourYoutubeContainer}>
           <p className={styles.unleashYourYoutube}>UNLEASH YOUR YOUTUBE</p>
           <p className={styles.unleashYourYoutube}> POTENTIAL WITH REAL</p>

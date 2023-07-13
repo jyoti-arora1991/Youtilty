@@ -23,10 +23,12 @@
 .ball1Icon,
 .ball2Icon,
 .welcomeShadowIcon {
-  position: absolute;
+  /* position: fixed; */
   max-width: 100%;
   /* overflow: hidden; */
   max-height: 100%;
+  height: auto;
+  width: 100%;
   /* object-fit: cover; */
 }
 .welcomeShadowIcon {
@@ -219,8 +221,6 @@
   mix-blend-mode: normal;
 }
 .youtility {
-  align-self: stretch;
-  position: relative;
   font-weight: 800;
   display: inline-block;
   height: 93px;
@@ -237,18 +237,20 @@
   font-size: 20px;
   color: var(--color-black);
   mix-blend-mode: normal;
+  margin-top: 20px;
 }
 .superchargeYourChannel {
   margin-block-start: 0;
-  margin-block-end: 5px;
+  margin-block-end: 3px;
 }
 .superchargeYourChannelContainer {
   align-self: stretch;
   position: relative;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-darkgray-100);
   mix-blend-mode: normal;
+  margin-top: 20px;
 }
 .greenRectangleIcon {
   position: absolute;
@@ -282,6 +284,8 @@
   width: 272px;
   height: 41.75px;
   mix-blend-mode: normal;
+  margin-top: 30px;
+  
 }
 .youtilityParent {
   position: absolute;
@@ -293,7 +297,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 63px;
+  /* gap: 1px; */
   font-size: 50px;
   color: var(--color-darkblue);
 }

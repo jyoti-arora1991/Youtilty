@@ -25,22 +25,22 @@ function GoogleLoginButton() {
   const navigate = useNavigate();
   let channel_id;
 
-  const onSuccess = (response) => {
+  const onSuccess = async(response) => {
     const { accessToken } = response;
     console.log(accessToken)
-  
-    // const a = httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/channels', 'POST', { headers: accessToken }, { 'Content-Type': 'application/json' });
     
-    // a.then((result) => {
-    //   const channel_id = result.id;
-    const a=httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/fetch_data', 'POST', { 'channelId': channel_id, headers: accessToken }, { 'Content-Type': 'application/json' });
-    // })
-    a.then((accessToken, channel_id ) => {
-      navigate('/questionPage', { state: { accessToken, channel_id } });
-    })
-    .catch((error) => {
+    try {
+      const channel_dict = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/channels', 'POST', { headers: accessToken }, { 'Content-Type': 'application/json' });
+      console.log("channel_dict");
+      console.log(channel_dict);
+  
+      const a = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/fetch_data', 'POST', { 'channelId': channel_id, headers: accessToken }, { 'Content-Type': 'application/json' });
+  
+      navigate('/questionPage', { state: { accessToken, channel_dict } });
+    } catch (error) {
       console.error(error);
-    });
+    
+    }
   }
   
 

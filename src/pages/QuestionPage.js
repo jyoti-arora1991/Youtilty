@@ -1,14 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styles from './QuestionPage.module.css';
 import { useLocation } from 'react-router-dom';
 
 import httpRequest from '../services/api';
 import HomeButton from './HomeButton';
 import GoogleLogoutButton from "./GoogleLogoutButton";
-import { Typography,InputAdornment, IconButton, TextField,ListItemText,ListItem, Divider, Box, createTheme, CircularProgress } from '@mui/material';
 
-import Autocomplete from '@mui/material/Autocomplete';
-import { Send } from '@mui/icons-material';
 import { CircularProgress as MuiCircularProgress } from '@mui/material';
 
 
@@ -16,8 +13,11 @@ import { CircularProgress as MuiCircularProgress } from '@mui/material';
 
 
 const QuestionPage = () => {
+  const defaultQuestion = 'Analyse youtube channel'; // Define your default question here
+  
+
   const location = useLocation();
-  const [conversation, setConversation] = useState([]);
+  
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const [inputValue, setInputValue] = useState('');
@@ -28,13 +28,53 @@ const QuestionPage = () => {
   const [loading, setLoading] = useState(false);
   console.log(location)
   const { accessToken } = location.state;
+  const {channel_dict}=location.state
   console.log(accessToken)
   
-  const channel_id = accessToken.data.channelId
-  const access_token = accessToken.data.headers
+  // const channel_dict = accessToken.data.channel_dict
+  console.log("quetio chanlle id")
+  console.log(channel_dict)
+  const channelName = channel_dict.title.toUpperCase();
+  const subscribers=channel_dict.subscribers
+  const videos = channel_dict.videos
+  const views = channel_dict.views
+  useEffect(() => {
+    const sendDefaultQuestion = async () => {
+      try {
+        const response = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry': false, 'question': defaultQuestion, 'channelId': '', 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
+        const answer = response.message;
+        setConversation((prevConversation) => [
+          ...prevConversation,
+          { sender: 'bot', message: answer },
+        ]);
+      } catch (error) {
+        console.error('An error occurred:', error);
+        const errorMessage = "System is overloaded, try again later";
+        alert(errorMessage);
+      }
+    };
+
+    // Send the default question when the question page opens
+    setConversation((prevConversation) => [
+      ...prevConversation,
+      { sender: 'user', message: defaultQuestion },
+    ]);
+
+    sendDefaultQuestion();
+  }, []);
+  
+  const [conversation, setConversation] = useState([
+    // Default conversation messages
+    
+    { sender: 'user', message: `Greetings, Creator of  \n ${channelName}!` },
+    { sender: 'user', message: 'Using our advanced AI technology, we have thoroughly analyzed your data' },
+   
+
+
+  ]);
+  // const access_token = accessToken.data.headers
   console.log("my chanel if and access")
-  console.log(access_token)
-  console.log(channel_id)
+  console.log(accessToken)
   console.log("my chanel if and access1")
 
 
@@ -65,15 +105,11 @@ const QuestionPage = () => {
       setLoading(true);
 
     }
-    // let accessToken='ya29.a0AWY7CkmrQ3nWhGC6G7N-px0a95H78T-ELzndBwC0jD6k0ZFm5Uvqd3JDWM9OufpogPquVXTm6QfolTxsZB90hIxBNx-5gIa4Wo5yRbGsh5GGoH9FMXGoHl3YgE1upoJ2pQsR8wsDhMk0afnmHZFwjUJeJID6-QaCgYKAT0SARMSFQG1tDrpM8-_O_zm4_Wh7mskzYHKlA0165';
-    // let channel_id='UCcA80NqKraq7phtzMMgP4nw';
-    setChannelid(channel_id)
-    // const e = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry':false,'question': userMessage, 'channelId': channel_id, 'accessToken': access_token }, { 'Content-Type': 'application/json' });
+    // setChannelid(channel_id)
     try {
       console.log("userMessageuserMessage")
       console.log(userMessage)
-      const e = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry':false,'question': userMessage, 'channelId': channel_id, 'accessToken': access_token }, { 'Content-Type': 'application/json' });
-      // Handle the response here if the request is successful
+      const e = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry':false,'question': userMessage, 'channelId': '', 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
       console.log("answer")
     console.log(e.message)
     const ans=e.message
@@ -87,82 +123,12 @@ const QuestionPage = () => {
       console.error('An error occurred:', error);
       const err1="System is overloaded, try again later"
       alert(err1)
-      // setConversation((prevConversation) => [
-      //   ...prevConversation,
-      //   { sender: 'bot', message: err1 },
-      // ]);
-      // Handle the error here
+      
     }
-  //   console.log("answer")
-  //   console.log(e.message)
-  //   const ans=e.message
-  //   setLoading(false)
-  //   setConversation((prevConversation) => [
-  //                 ...prevConversation,
-  //                 { sender: 'bot', message: ans },
-  //               ]);
-
-  //   // await fetchAns();
+  
   };
 
-  // const fetchAns = async () => {
-  //   const timeout =  120000; 
-  //   const retryInterval = 10000; // 10 seconds (modified value)
-  //   const startTime = Date.now();
   
-  //   while (Date.now() - startTime < timeout) {
-  //     try {
-  //       const requestPromise = httpRequest(
-  //         'https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/get_ans',
-  //         'POST',
-  //         { 'channelId':'UCcA80NqKraq7phtzMMgP4nw' },
-  //         { 'Content-Type': 'application/json' },
-  //         retryInterval
-  //       );
-  
-  //       const response = await requestPromise;
-  //       console.log("response.data")
-  //       console.log(response.data)
-  
-  //       if (response && response.data) {
-  //         const ans = response.data;
-          
-  //         console.log("issub1")
-  //         console.log(response.data)
-  //         console.log("issub2")
-  //         // setPT(Date.now() - startTime)
-
-  //         console.log("and")
-  //         console.log(ans)
-  //           setConversation((prevConversation) => [
-  //             ...prevConversation,
-  //             { sender: 'bot', message: ans },
-  //           ]);
-  //         console.log("Received ans:", ans);
-  //         setLoading(false);
-
-  //         return; // Exit the function since we received the answer
-          
-  //       }
-  //       else if (response.status === 500) {
-  //           console.log("AI not able to process the request right now")
-  //       } 
-  //       else {
-  //         console.log("Request submitted");
-  //         // Handle the case when the request is submitted but no answer is received
-  //       }
-  //     } catch (error) {
-  //       console.log("Error occurred:", error.message);
-  //       // Handle the case when the request times out
-  //     }
-  
-  //     await new Promise(resolve => setTimeout(resolve, retryInterval)); // Wait for the specified retry interval before the next iteration
-  //   }
-  //   setLoading(false)
-    
-  //   console.log("Errir while processing your request")
-  //   throw new Error("Request timeout"); // Throw an error if no response received within one minute
-  // };
   
   const Suggestions = [
     "Help me identify any issues in my channel and provide suggestions for improvement?",
@@ -203,15 +169,15 @@ const QuestionPage = () => {
           ) : (
             <>
               <div className={styles.asAnAi}>{message.message}</div>
-              <div className={styles.chatBubblerecevedreceivedChild} />
+              {/* <div className={styles.chatBubblerecevedreceivedChild} /> */}
               <div className={styles.frameGroup}>
                 <div className={styles.iconoutlinelikeParent}>
-                  <img className={styles.iconoutlinelike} alt="" src="/iconoutlinelike.svg" />
-                  <img className={styles.iconoutlinelike} alt="" src="/iconoutlinedislike.svg" />
+                  {/* <img className={styles.iconoutlinelike} alt="" src="/iconoutlinelike.svg" /> */}
+                  {/* <img className={styles.iconoutlinelike} alt="" src="/iconoutlinedislike.svg" /> */}
                 </div>
                 <div className={styles.iconfillclipboardParent}>
-                  <img className={styles.iconfillclipboard} alt="" src="/iconfillclipboard.svg" />
-                  <div className={styles.copy}>Copy</div>
+                  {/* <img className={styles.iconfillclipboard} alt="" src="/iconfillclipboard.svg" /> */}
+                  {/* <div className={styles.copy}>Copy</div> */}
                 </div>
               </div>
             </>
@@ -229,15 +195,20 @@ const QuestionPage = () => {
         <b className={styles.youtility}>Youtility</b>
         <div className={styles.alwaysActive}>
           <div className={styles.alwaysActiveChild} />
-          <div className={styles.alwaysActive1}>Always active</div>
+          <div className={styles.alwaysActive1}>Always active </div>
+          
         </div>
+        
       </div>
       {/* <GoogleLogoutButton/> */}
+     
     </div>
     <GoogleLogoutButton className={styles.hugeIconusersoliduserCirc}/>
     {/* <img className={styles.hugeIconusersoliduserCirc} alt=""  /> */}
   </div>
+  
   <img className={styles.vectorIcon} alt="" src="/vector.svg" />
+  
   <div className={styles.frameContainer}>
     <input
       ref={inputRef}

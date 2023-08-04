@@ -5,6 +5,7 @@ import httpRequest from '../services/api';
 import { gapi } from 'gapi-script';
 import { useNavigate } from 'react-router-dom';
 import GoogleIcon from '@mui/icons-material/Google';
+import config from '../config';
 
 const clientId = '890593488111-o10mtf4ka43e97vdnntv1cev714ipo64.apps.googleusercontent.com';
 
@@ -20,7 +21,8 @@ function GoogleLoginButton() {
 
     gapi.load('client:auth2', start);
   }, []);
-  
+  const { apiUrl } = config[process.env.NODE_ENV || 'development'];
+
 
   const navigate = useNavigate();
   let channel_id;
@@ -30,11 +32,11 @@ function GoogleLoginButton() {
     console.log(accessToken)
     
     try {
-      const channel_dict = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/channels', 'POST', { headers: accessToken }, { 'Content-Type': 'application/json' });
+      const channel_dict = await httpRequest(`${apiUrl}/channels`, 'POST', { headers: accessToken }, { 'Content-Type': 'application/json' });
       console.log("channel_dict");
       console.log(channel_dict);
   
-      const a = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/fetch_data', 'POST', { 'channelId': channel_id, headers: accessToken }, { 'Content-Type': 'application/json' });
+      const a = await httpRequest(`${apiUrl}/fetch_data`, 'POST', { 'channelId': channel_id, headers: accessToken }, { 'Content-Type': 'application/json' });
   
       navigate('/questionPage', { state: { accessToken, channel_dict } });
     } catch (error) {

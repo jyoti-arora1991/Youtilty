@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import httpRequest from '../services/api';
 import HomeButton from './HomeButton';
 import GoogleLogoutButton from "./GoogleLogoutButton";
+import config from '../config';
 
 import { CircularProgress as MuiCircularProgress } from '@mui/material';
 
@@ -13,6 +14,7 @@ import { CircularProgress as MuiCircularProgress } from '@mui/material';
 
 
 const QuestionPage = () => {
+  const { apiUrl } = config[process.env.NODE_ENV || 'development'];
   const defaultQuestion = 'Analyse youtube channel'; // Define your default question here
   
 
@@ -41,7 +43,7 @@ const QuestionPage = () => {
   useEffect(() => {
     const sendDefaultQuestion = async () => {
       try {
-        const response = await httpRequest('https://cdeopcczr2.execute-api.ap-southeast-2.amazonaws.com/dev/question', 'POST', { 'retry': false, 'question': defaultQuestion, 'channelId': '', 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
+        const response = await httpRequest(`${apiUrl}/question`, 'POST', { 'retry': false, 'question': defaultQuestion, 'channelId': '', 'accessToken': accessToken }, { 'Content-Type': 'application/json' });
         const answer = response.message;
         setConversation((prevConversation) => [
           ...prevConversation,
